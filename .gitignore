@@ -1,0 +1,9 @@
+routes/__pycache__/*
+.vscode/*
+.idea/*
+start.*
+*.pyc
+Pipfile.lock
+static/.webassets-cache/*
+_docker/*.env
+prerender/*.txt
