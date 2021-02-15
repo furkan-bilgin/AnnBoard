@@ -1,0 +1,82 @@
+{% macro nav_item(endpoint, text) %}
+<a class="navbar-item{% if request.endpoint != None and request.endpoint.endswith(endpoint) %} is-active{% endif %}" href="{{ url_for(endpoint) }}">
+     {{ text }}
+</a>
+{% endmacro %}
+
+<nav class="navbar is-fixed-top">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" style="min-width: 130px; min-height: 52px">
+    </a>
+
+    <div class="navbar-burger burger is-vcentered" data-target="navMenubd">
+      <span></span>
+      <span></span>
+      <span style="top: calc(50% + 4px)"></span>
+    </div>
+  </div>
+
+  <div id="navMenubd" class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Site Hakkında
+        </a>
+        <div class="navbar-dropdown ">
+          {{ nav_item('faq', 'Sıkça Sorulan Sorular') }}
+          {{ nav_item('site_rules', 'Site Kuralları') }}
+          {{ nav_item('contact_us', 'İletişim') }}
+        </div>
+      </div>
+      <div class="navbar-item">
+        <div class="search-bar">
+          <p class="control has-icons-right">
+            <span class="icon is-small is-right">
+              <i class="las la-search" style="color: white"></i> 
+            </span>
+          </p>
+          <input class="input" id="search-bar" type="search" placeholder="Ara...">
+        </div>
+      </div>
+    </div>
+    
+    <!--<div class="navbar-item field" style="justify-content: center;">
+      
+    </div>-->
+
+    <div class="navbar-end">
+      <div class="navbar-item columns" id="user-login-data">
+      </div>
+    </div>
+      <!--
+    <div class="navbar-end">
+      <a class="navbar-item is-hidden-desktop-only" href="https://github.com/jgthms/bulma" target="_blank">
+        <span class="icon" style="color: #333;">
+          <i class="fa fa-github"></i>
+        </span>
+      </a>
+      <a class="navbar-item is-hidden-desktop-only" href="https://twitter.com/jgthms" target="_blank">
+        <span class="icon" style="color: #55acee;">
+          <i class="fa fa-twitter"></i>
+        </span>
+      </a>
+      <div class="navbar-item">
+        <div class="field is-grouped">
+          <p class="control">
+            <a class="bd-tw-button button" data-social-network="Twitter" data-social-action="tweet" data-social-target="http://bulma.io" target="_blank" href="https://twitter.com/intent/tweet?text=Bulma: a modern CSS framework based on Flexbox&hashtags=bulmaio&url=http://bulma.io&via=jgthms">
+              <span class="icon">
+                <i class="fa fa-twitter"></i>
+              </span>
+              <span>
+                Tweet
+              </span>
+            </a>
+
+          </p>
+        </div>
+      </div>
+    </div>
+    -->
+  </div>
+</nav>

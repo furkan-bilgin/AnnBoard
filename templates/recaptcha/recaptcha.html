@@ -1,0 +1,7 @@
+{% macro render_recaptcha(use_checkbox) -%}
+    {% if use_checkbox %}
+        {% include "recaptcha/v2.html" %}
+    {% else %}
+        {% include "recaptcha/v3.html" %}
+    {% endif %}
+{%- endmacro %} 

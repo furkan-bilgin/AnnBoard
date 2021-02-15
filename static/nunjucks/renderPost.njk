@@ -1,0 +1,7 @@
+{% from "post.html" import render_post %}
+
+{{ render_post(post, clickable, show_topic) }}
+{% if is_prerendered %}
+    {% set post_url = "/+" + post.topic + "/" + post.base36 %}
+    <a href="{{ post_url }}">{{ post_url }}</a>
+{% endif %}

@@ -1,0 +1,13 @@
+{% macro render_navigation(current, to) %}
+    <div class="select select-navigation">
+        <select id="navigation">
+            {% for i in range(1, to + 2) %}
+                {% if current === i %}
+                    <option selected="selected">{{ i }}</option>
+                {% else %}
+                    <option>{{ i }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+{% endmacro %}

@@ -1,0 +1,103 @@
+{% from "utils.html" import render_topic, render_media, render_report_link, render_reply_link %}
+{% from "moderationTools.html" import render_mod_tools %}
+
+{% macro render_comment(comment, can_reply) %}
+    <div class="post-contents" id="comment-{{ comment.id }}" data-post-id="{{ comment.id }}" style="padding-top: 0.25rem !important; padding-bottom: 0.25rem !important;">
+        {% if comment.is_pinned %}
+            <i class="las la-thumbtack" style="color: green" aria-hidden="true"></i>
+        {% endif %}
+
+        {% if comment.username === "Moderatör" %}
+            {% set ann_style='style="color: green"' %}
+            <i class="las la-shield-alt" style="color: green" aria-hidden="true"></i>    
+        {% endif %}
+
+        <span class="post-sender"><strong {{ann_style|safe}}>{{ comment.username }}</strong> • @{{ comment.id }} • {{ to_readable_date(comment.utc_timestamp) }}</span>
+        
+        <span class="post-warning"></span>
+        <div class="post-moderation-tools is-pulled-right is-vcentered" data-id="{{ comment.id }}">
+            
+            {{ render_report_link(comment.base36) }} 
+            
+            {% if can_reply %} 
+                {{ render_reply_link(comment.id) }}
+            {% endif %}
+            {{ render_mod_tools(comment) }}
+        </div>
+        {{ render_media(comment) }}
+        <div class="post-body">
+            {{ comment.format_body()|safe }}
+        </div>
+    </div>
+{% endmacro %}
+
+
+{% macro render_post(data, clickable, show_topic=True) %} 
+
+    {% set post_url = "/+" + data.topic + "/" + data.base36 %}
+    {% if clickable %}
+    <div class="clickable-post" data-post-url="{{ post_url }}">
+    {% endif %}
+    <section class="hero post" data-post-id="{{ data.id }}">
+        <div class="post-contents">
+
+            {% if data.is_pinned %}
+                <i class="las la-thumbtack" style="color: green" aria-hidden="true"></i>
+            {% endif %}
+
+            {% if show_topic %}
+            {{ render_topic(data.topic, "upper-post-topic") }}
+            <span class="small-padding"></span>
+            {% endif %}
+
+           
+            {% if data.title %}
+                <span class="post-title">{{ data.title }}</span>
+                •
+            {% endif %}
+            
+            {% if data.username === "Moderatör" %}
+                {% set ann_style='style="color: green"' %}
+                <i class="las la-shield-alt" style="color: green" aria-hidden="true"></i>    
+            {% endif %}
+            <span class="post-sender">
+                
+                <strong {{ann_style|safe}}>{{ data.username }}</strong> 
+                • 
+                {{ to_readable_date(data.utc_timestamp) }}
+            </span>
+            <span class="post-warning"></span>
+            <div class="post-moderation-tools is-pulled-right is-vcentered" data-id="{{ data.id }}"> 
+                {{ render_report_link(data.base36) }}
+                {{ render_mod_tools(data) }}
+            </div>
+            {{ render_media(data) }}
+
+            <div class="post-body">
+                {{ data.format_body()|safe }}
+            </div>
+            
+        </div>
+        {% set msg_count = data.comment_count - data.comments|length %}
+        {% if data.comments %}
+            <hr>
+            {% if data.has_less_comments and msg_count > 0 %}
+                <div class="post-contents"> <a data-post-show-more="{{ data.id }}" href="javascript:void(0)">Öncesini gör ({{ msg_count }} mesaj)</a> </div>
+            {% else %}
+                <div style="padding: .5rem"></div>
+            {% endif %}
+
+            {% for element in data.comments %}
+                {{ render_comment(element, (not clickable)) }}
+            {% endfor %}      
+        {% endif %}
+    </section>
+
+    {% if clickable %}
+    </div>
+    {% endif %}
+    {% if data.is_pinned and data.has_less_comments %}
+    <hr>
+    {% endif %}
+
+{% endmacro %}

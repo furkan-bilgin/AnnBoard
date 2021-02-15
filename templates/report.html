@@ -1,0 +1,37 @@
+{% extends "default.html" %}
+{% from "content/_flash_helpers.html" import show_errors, show_primary, show_form_errors %}
+{% from "recaptcha/recaptcha.html" import render_recaptcha %}
+
+{% block title %}Anonimce - İspiyonla{% endblock %}
+
+{% block body %}
+
+<section class="hero top-hero">
+  <div class="hero-body">
+    <p class="title">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" style="height: 100px;width:auto">
+    </p>
+    <br>
+    <p class="subtitle">"{{ post.get_body()|safe }}"</p>
+    <p class="subtitle"><strong>paylaşımını ispiyonla.</strong></p>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {{ show_errors() }}
+        {{ show_primary("success") }}
+        <dl>
+            <dd> {{ form.reason_id(class_="select") }} </dd>
+            <br>
+
+            <button class="button is-link submit-button" onclick="$(this).toggleClass('is-loading')" type="submit">Gönder</button>
+            <br><br>
+            <center>
+              {{ render_recaptcha(use_checkbox=True) }}
+            </center>
+        </dl>
+        <span id="file-error-text" style="margin: 0 auto; color: red"></span>
+        <br>
+    </form>
+  </div>
+</section>
+
+{% endblock %}

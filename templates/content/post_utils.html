@@ -1,0 +1,32 @@
+{% macro render_moderation_tools(data, current_user) -%}
+    <div class="is-pulled-right is-vcentered">
+        
+        {% if data.parent is not none %}
+            <a href="javascript:void(0)" onclick="replyPost( {{ data.id }} )">Yanıtla</a>   
+            •
+        {% endif %}
+
+        <a href="/ispiyonla/{{ data.get_base36() }}" >İspiyonla</a> 
+
+        {% if current_user.has_any_permission() %}
+            • <button class="button" onclick="$('#mod-buttons-{{ data.id }}').toggle(); $(this).toggle(); return false;" style="width: 20px; height: 30px"><i class="las la-gavel" style="color: green"></i></button>
+            
+            <span id="mod-buttons-{{ data.id }}" style="display: none">
+                {% if current_user.has_permission(permissions.REMOVE_POSTS) %}
+                <a href="/sil/{{data.id}}">Paylaşımı Sil</a> •
+                {% endif %}
+
+                {% if current_user.has_permission(permissions.BAN_USERS) %}
+                <a href="/tekmele/{{data.author.id}}" >Göndereni Tekmele</a> 
+                {% endif %}  
+            </span>       
+        {% endif %}
+    </div>
+{%- endmacro %}
+
+{% macro render_loading() -%}
+<div id="post-loading">
+    <div class="loader is-loading"></div>
+    <br>
+</div>
+{%- endmacro %}

@@ -1,0 +1,44 @@
+version: '3.3'
+
+services:
+   ann:
+     build: .
+     ports:
+       - "5000:80"
+     networks:
+       - ann
+     depends_on:
+       - "mysql"
+       - "redis"
+     restart: always
+     environment:
+       ann_database: mysql://anonimce:MYSQL_PASSWORD@mysql/anonimce
+       ann_redis_host: redis
+       ann_redis_port: 6379
+     env_file:
+       - variables.env
+
+   mysql:
+     image: mysql:5.7
+     volumes:
+       - db_data:/var/lib/mysql
+     networks:
+       - ann
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: MYSQL_PASSWORD
+       MYSQL_DATABASE: anonimce
+       MYSQL_USER: anonimce
+       MYSQL_PASSWORD: MYSQL_PASSWORD
+   
+   redis:
+     networks:
+       - ann
+     image: "redis:alpine"
+   
+     
+networks:
+  ann: {}
+
+volumes:
+    db_data: {}

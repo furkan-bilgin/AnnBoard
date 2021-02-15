@@ -1,0 +1,9 @@
+<script src='https://www.google.com/recaptcha/api.js?hl=tr&theme=dark' async defer></script>
+<div class="g-recaptcha" data-theme="dark" data-sitekey="6LeFyNEZAAAAAKlsmXTfGiJlrABpSipbvLJdiW13"></div>
+<script>
+    window.addEventListener("load", () => {
+        $(document).on("refreshCaptcha", () => {
+            grecaptcha.reset();
+        });
+    });
+</script>

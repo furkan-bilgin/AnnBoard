@@ -1,0 +1,63 @@
+{% extends "default.html" %}
+{% from "content/post.html" import render_post %}
+{% from "content/topic.html" import render_topic %}
+{% from "content/_flash_helpers.html" import show_errors, show_primary, show_form_errors %}
+{% from "recaptcha/recaptcha.html" import render_recaptcha %}
+{% from "content/post_utils.html" import render_loading %}
+
+
+{% block og_desc %}{{ post.body }}{% endblock %}
+
+{% block og_image %}
+    {%- if post.media.url is defined and post.media.is_video() -%}
+{{ post.media.url }}
+    {%- else -%}
+{{ super() }}
+    {%- endif -%}
+{% endblock %}
+
+{% block title %} 
+{%- if post.title is not none -%}
++{{ post.topic.name }} - {{ post.to_title(post.title) }} 
+{%- else -%}
++{{ post.topic.name }} - {{ post.to_title(post.body) }} 
+{%- endif -%}
+{% endblock %}
+
+{% block meta_description %}{{ post.body }}{% endblock %}
+
+{% block body %}
+<br>
+{{ show_primary("success_post") }}
+
+{{ render_loading() }}
+
+<div id="all-post-contents" style="display: none;">
+    <section class="refresh">
+        <button class="button refresh-button" style="width: 6rem"><i class="las la-sync" aria-hidden="true"></i>&nbsp;Yenile</button>
+        <span id="refresh-time"></span>
+    </section>
+
+    <div id="post" data-post-id="{{ post.get_base36() }}"></div>
+</div>
+
+<section class="hero">
+    <div class="post-contents">
+        {{ show_primary("success_comment") }}
+        <form id="comment-submit-form" method="POST" enctype="multipart/form-data">
+            {{ show_errors() }}
+            <dl>
+                <dd> {{ form.body(cols=10, rows=5, maxlength="30000", class_="textarea reply-text", placeholder="Senin düşüncelerin ne?") }} </dd>
+                <dd> {{ form.base36(value=post.get_base36()) }} </dd>
+                <dd> {{ form.topic_name(value=post.topic.name) }} </dd>
+
+                <br>
+                {% include "content/form_buttons.html" %}
+            </dl>
+            <br>
+        </form>
+    </div>
+</section>
+
+<div class="prerendered-content">{{ prerender|safe }}</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% macro render_media(data) -%}
+
+    {% if data.media is not none %}
+        <div class="post-media">   
+        {% if data.media.is_video() %}
+            <video preload="metadata" src="{{ data.media.url }}" controls style="width: 100%; height:100%">
+
+        {% else %} 
+            <img loading="lazy" src="{{ data.media.url }}" style="max-height: 100%; max-width: 100%;">
+        {% endif %}
+        </div>
+    {% endif %}
+{%- endmacro %}

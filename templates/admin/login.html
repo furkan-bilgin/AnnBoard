@@ -1,0 +1,31 @@
+{% extends "default.html" %}
+{% from "content/_flash_helpers.html" import show_errors, show_primary, show_form_errors %}
+
+{% block body %}
+
+<section class="hero hero-with-padding top-hero">
+  <div class="hero-body">
+    <p class="title">
+        Admin Girişi
+    </p>
+    <p class="subtitle">
+        <form method="POST" style="max-width:30rem; margin: 0 auto;">
+            <br>
+            {{ show_form_errors(form) }}
+            {{ show_errors() }}
+            <dl>
+                <dd> {{ form.username(placeholder="Kullanıcı Adı", class_="input") }}</dd>
+                <br>
+                <dd> {{ form.password(placeholder="Şifre", type="password", class_="input") }}</dd>
+                <br>
+                <dd> {{ form.remember_me(id="remember_me") }} <label for="remember_me">Beni unutma</label></dd>
+            </dl>
+            <br>
+            <br>
+            <p><button class="button is-link submit-button" onclick="$(this).toggleClass('is-loading')" type="submit">Giriş Yap</button>
+        </form>
+    </p>
+  </div>
+</section>
+
+{% endblock %}

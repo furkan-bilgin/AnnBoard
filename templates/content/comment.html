@@ -1,0 +1,17 @@
+{% from "content/media.html" import render_media %}
+{% from "content/post_utils.html" import render_moderation_tools %}
+
+{% macro render_comment(data, show_if_deleted=False) -%}
+
+    {% if data.should_show(show_if_deleted) %}
+        <div class="post-contents" id="comment-{{ data.id }}" style="padding-top: 0.25rem !important; padding-bottom: 0.25rem !important;">
+            <span class="post-sender"><strong>Anonim</strong> • @{{ data.id }} • {{ data.get_date() }}</span>
+            
+            {{ render_media(data) }}
+            <div class="post-body">
+                {{ data.format_body()|safe }}
+            </div>
+        </div>
+    {% endif %}
+
+{%- endmacro %}

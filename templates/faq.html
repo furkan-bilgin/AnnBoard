@@ -1,0 +1,44 @@
+{% extends "default.html" %}
+
+{% block title %}Anonimce - Sıkça Sorulan Sorular{% endblock %}
+
+{% block body %}
+
+<section class="hero hero-with-padding">
+  <div class="hero-body">
+    <p class="title">
+      Sıkça Sorulan Sorular
+    </p>
+    <br>
+    <p class="subtitle">
+        <strong>* Anonimce nedir?</strong>
+    </p>
+    <p class="subtitle">
+      Anonimce, anonim bilgi edinip anonim paylaşım yapabildiğiniz bir mecradır. Paylaşım yapmak için bir üyeliğe sahip olmanız <strong>gerekmemektedir.</strong>
+    </p>
+   
+    <p class="subtitle">
+        <strong>* Neden anonim?</strong>
+    </p>
+    <p class="subtitle">
+      Düşünceyi söyleyen kişinin değil de söylenen düşüncenin önemli olduğuna inanıyoruz. Bu yüzden Anonimce hiçbir zaman giriş & kayıt sistemi ile kullanılmayacak.
+    </p>
+
+    <p class="subtitle">
+      <strong>* Yani istediğimiz her şeyi paylaşabiliyor muyuz?</strong>
+    </p>
+    <p class="subtitle">
+        Bazı kurallar var. Öğrenmek için <a href="{{ url_for('site_rules') }}">site kurallarını</a> okuyun.
+    </p>
+
+    <p class="subtitle">
+      <strong>* Neden robot doğrulaması testi (reCAPTCHA) var?</strong>
+    </p>
+    <p class="subtitle">
+      Sitemizde kayıt sistemi olmadığı için saldırıya uğramamız diğer sitelerden çok daha kolay oluyor. Bu yüzden robot doğrulaması testi koyarak otomatik yapılan saldırıların önüne geçmeye çalışıyoruz.
+      <strong>VE</strong> robot doğrulaması testi riskli gördüğümüz kullanıcılara daha çok uygulanıyor, o yüzden paylaşım yapmadan önce sürekli teste girmeniz gerekmiyor, onun yerine arkaplanda otomatik bir test uygulanıyor.
+    </p>
+  </div>
+</section>
+
+{% endblock %}

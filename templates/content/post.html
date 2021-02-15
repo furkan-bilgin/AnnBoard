@@ -1,0 +1,57 @@
+{% from "content/topic.html" import render_topic %}
+{% from "content/comment.html" import render_comment %}
+{% from "content/media.html" import render_media %}
+{% from "content/post_utils.html" import render_moderation_tools %}
+
+{% macro render_post(data, less_comments, clickable, show_topic=True) -%}
+
+{% if clickable %}
+<div onclick="window.location=`{{ url_for('show_post', topic_name=data.get_topic().name, base36=data.get_base36()) }}`" class="clickable-post">
+{% endif %}
+<section class="hero post" id="post-{{ data.get_base36() }}">
+    <div class="post-contents">
+        {% if data.is_pinned %}
+        {% set ann_style='style="color: green"' %}
+        <i class="las la-thumbtack" style="color: green" aria-hidden="true"></i>
+        {% endif %}
+
+        {% if show_topic %}
+        {{ render_topic(data.topic, "upper-post-topic") }}
+        <span class="post-padding-between-sender"></span>
+        {% endif %}
+
+        <span class="post-sender"><strong {{ann_style|safe}}>Anonim</strong> • {{ data.get_date() }}</span>
+
+        <div class="post-moderation-tools is-pulled-right is-vcentered"></div>
+        {{ render_media(data) }}
+
+        <div class="post-body">
+            {{ data.get_body()|safe }}
+        </div>
+        
+    </div>
+    {% if data.has_comments()%}
+        <hr>
+        {% set comments = data.filter_comments(less_comments) %}
+
+        {% if data.comments|length > comments|length and less_comments %}
+            <div class="post-contents"> <a href="{{data.get_url()}}">Öncesini gör ({{ data.filter_comments(show_less=False)|length - comments|length }} mesaj)</a> </div>
+        {% else %}
+            <div style="padding: .5rem"></div>
+        {% endif %}
+
+        {% for element in comments %}
+            {{ render_comment(element) }}
+        {% endfor %}      
+    {% endif %}
+</section>
+
+{% if clickable: %}
+</div>
+{% endif %}
+{% if data.is_pinned and less_comments %}
+<hr>
+{% endif %}
+<br>
+
+{%- endmacro %}

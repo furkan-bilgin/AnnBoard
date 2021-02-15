@@ -1,0 +1,35 @@
+{% macro render_topic(data, additional_class, href=null) -%}
+{% if href is null %}
+    {% set href = "/+" + data + "/" %}
+{% endif %}
+<a href="{{ href }}" class="topic-link {{ additional_class }}">+{{ data }} <!--<sup>0</sup> TODO: Showing post count like this could be cool? --></a>
+{%- endmacro %}
+
+{% macro render_media(data) -%}
+    
+    {% set regExp = r/\.mp4$/g %}
+    {% if data.media_url %}
+        <div class="post-media">   
+        {% if regExp.test(data.media_url) %}
+            <video preload="metadata" src="{{ data.media_url }}" controls style="width: 100%; height:100%">
+        {% else %} 
+            <img loading="lazy" src="{{ data.media_url }}" style="max-height: 100%; max-width: 100%;" data-launch-image-modal="true"    >
+        {% endif %}
+        </div>
+    {% endif %}
+{%- endmacro %}
+
+ 
+{% macro render_report_link(id) %}
+    <a class="report-link" href="/ispiyonla/{{ id }}" data-tooltip="Bu kişiyi şikayet et.">
+        <i class="las la-flag"></i>
+    </a> {# ispiyon #} 
+{% endmacro %}
+
+{% macro render_reply_link(id) %}
+    <a class="reply-link" href="javascript:void(0)" 
+        data-id="{{ id }}"
+        data-tooltip="Bu yoruma yanıt ver.">
+        <i class="las la-comment-dots"></i>
+    </a> {# yanıtla #}   
+{% endmacro %}

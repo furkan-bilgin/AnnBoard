@@ -1,0 +1,57 @@
+{% from "navigation.html" import render_navigation %}
+
+{% macro render_report(data) %}
+    <tr>
+      <th>
+        {{ data.id }}
+      </th>
+
+      <th>
+        {% if data.is_comment %}
+            Yorum
+        {% else %}
+            Paylaşım
+        {% endif %}
+      </th>
+      
+      <th>
+        <a href="{{ data.link }}">{{ data.reported_post_body |safe }}</a>
+      </th>
+
+      <th>
+        {{ data.reason }}
+      </th>
+
+      <th>
+        {% if data.reporter_is_risky %}
+            Evet
+        {% else %}
+            Hayır
+        {% endif %}
+      </th>
+
+       <th>
+        {{ to_readable_date(data.utc_timestamp) }}
+      </th>
+    </tr>
+{% endmacro %}
+
+{% macro render_report_table(data_list) %}
+<table class="table" style="font-size: 1rem; width: 100%">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th><abbr title="Yorum ya da Paylaşım" data-tooltip="Yorum ya da Paylaşım">Tür</abbr></th>
+      <th>İçerik</th>
+      <th>Sebep</th>
+      <th><abbr title="İspiyonlayan riskli mi?" data-tooltip="İspiyonlayan riskli mi?">İRM</abbr></th>
+      <th>Tarih</th>
+    </tr>
+  </thead>
+  <tfoot>
+    {% for data in data_list %}
+        {{ render_report(data) }}
+    {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}

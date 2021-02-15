@@ -1,0 +1,30 @@
+{% extends "default.html" %}
+{% from "content/_flash_helpers.html" import show_errors, show_primary, show_form_errors %}
+
+{% block body %}
+
+<section class="hero hero-with-padding top-hero">
+  <div class="hero-body">
+    <p class="title">
+        Moderatör ekle
+    </p>
+    <p class="subtitle">
+        <form method="POST" style="max-width:30rem; margin: 0 auto;">
+            <br>
+            <dl>
+                <dd> {{ form.username(placeholder="Kullanıcı Adı", class_="input") }}</dd>
+                <br>
+                <dd> <input class="input" id="password"  placeholder="Şifre" type="password" value=""></dd>
+                <br>
+                <dd> {{ form.group(placeholder="Grup Adı", class_="input") }}</dd>
+                <input type="hidden" name="password-hash">
+            </dl>
+            <br>
+            <p><button class="button is-link submit-button" name="add-moderator-button" onclick="$(this).toggleClass('is-loading')" type="submit">Moderatör Ekle</button>
+        </form>
+    </p>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
+{% endblock %}

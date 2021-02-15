@@ -1,0 +1,36 @@
+{% extends "default.html" %}
+{% from "content/_flash_helpers.html" import show_errors, show_primary, show_form_errors %}
+
+{% macro you_sure_button() -%}
+  <br><br>
+  <button class="button is-primary" onclick="window.location.href='?eminim=1'">Eminim</button>
+  <button class="button is-secondary" onclick="window.history.back()">Boş ver</button>
+{%- endmacro %}
+
+{% block body %}
+
+<section class="hero hero-with-padding" style="text-align: center;">
+  <div class="hero-body">
+    <br>
+    <p class="subtitle">
+        {% if action == "delete_post" %}
+            "{{ post.get_body()|safe }}"
+            <br><br>
+            <strong><i class="las la-trash-alt remove-link"></i> Bu paylaşımı silmek istediğinizden emin misiniz?</strong>
+            {{ you_sure_button() }}
+        {% elif action == "ban_user" %}
+            <i class="las la-user-slash ban-link"></i> Bu paylaşımı yapan kullanıcıyı yasaklamak istediğinizden emin misiniz? Bir daha <strong>hiçbir şekilde</strong> paylaşım yapamayacak.
+            {{ you_sure_button() }}
+        {% elif action == "ban_user_reason" %}
+            Yasaklama sebebi girin:
+            <br>
+            <textarea id="reason" class="textarea" cols="20" rows="2"></textarea>
+            <button class="button is-primary" onclick="window.location.href='?eminim=1&sebep=' + $('#reason').val()">Tekmele!</button>
+            <button class="button is-secondary" onclick="window.history.back()">Boş ver</button>
+        {% endif %}
+    </p>
+    
+  </div>
+</section>
+
+{% endblock %}

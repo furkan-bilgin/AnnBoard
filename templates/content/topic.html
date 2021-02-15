@@ -1,0 +1,8 @@
+{% macro render_topic(data, additional_class, href=None) -%}
+{% if href is none %}
+    {% set href = "/+" + data.name + "/" %}
+{% endif %}
+
+    <a href="{{ href }}" class="topic-link {{ additional_class }}">+{{ data.name }} <!--<sup>0</sup> TODO: Showing post count like this could be cool? --></a>
+
+{%- endmacro %}

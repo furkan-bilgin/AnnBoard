@@ -1,0 +1,65 @@
+{% macro render_mod_tools(post) %}
+    {% if permissions %}
+        <button class="button" onclick="$('#mod-buttons-{{ post.id }}').toggle(); $(this).toggle(); return false;" style="width: 20px; height: 30px"><i class="las la-gavel" style="color: green"></i></button>
+
+        <span id="mod-buttons-{{ post.id }}" style="display: none">
+            <span class="small-padding"></span>
+            {% if permissions.canDelete %}
+                <a href="javascript:void(0)" class="remove-link" 
+                data-tooltip="Bu gönderiyi sil"
+                data-delete-post="{{ post.id }}">
+                    <i class="las la-trash-alt"></i>
+                </a>   
+            {% endif %}
+            
+            {% if permissions.canBan %}
+                <a href="javascript:void(0)" class="ban-link" 
+                data-tooltip="Göndereni tekmele"
+                data-ban-user="{{ post.id }}">
+                    <i class="las la-user-slash"></i>
+                </a> 
+            {% endif %}
+
+            {% if permissions.canDelete and post.media_url %}
+                <a href="javascript:void(0)" class="remove-link" 
+                data-tooltip="Medyayı sil"
+                data-delete-media="{{ post.id }}">
+                    <i class="las la-photo-video"></i>
+                </a>   
+            {% endif %}
+            
+            {% if permissions.pinPosts %}
+                {% if not post.is_pinned %}
+                    <a href="javascript:void(0)" class="pin-link" 
+                    data-tooltip="Paylaşımı sabitle"
+                    data-pin-post="{{ post.id }}">
+                        <i class="las la-thumbtack"></i>
+                    </a> 
+                {% else %}
+                    <a href="javascript:void(0)" class="unpin-link" 
+                    data-tooltip="Sabitlemeyi kaldır"
+                    data-unpin-post="{{ post.id }}">
+                        <i class="las la-thumbtack"></i>
+                    </a> 
+                {% endif %}
+            {% endif %}
+
+            {% if permissions.distinguish %}
+                {% if post.username == "Anonim" %}
+                    <a href="javascript:void(0)" class="distinguish-link" 
+                    data-tooltip="Modluğu belli et"
+                    data-distinguish-post="{{ post.id }}">
+                        <i class="las la-shield-alt"></i>
+                    </a> 
+                {% else %}
+                    <a href="javascript:void(0)" class="undistinguish-link" 
+                    data-tooltip="Belli edilmeyi kaldır"
+                    data-undistinguish-post="{{ post.id }}">
+                        <i class="las la-shield-alt"></i>
+                    </a> 
+                {% endif %}
+            {% endif %}
+        </span>
+    {% endif %}
+{% endmacro %}
+

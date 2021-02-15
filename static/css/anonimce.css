@@ -1,0 +1,296 @@
+
+@media only screen and (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+    }
+    body {
+        position: relative
+    }
+    
+    .hero-with-padding {
+        padding-left:0.2rem !important;
+        padding-right:0.2rem !important;
+    }
+    .section {
+        padding: 0 !important;
+    }
+
+    .columns {
+        margin: 0 !important;
+    }
+
+    .post {
+        margin-left: 0.5rem !important;
+        margin-right: 0.5rem !important;
+    }
+
+    textarea {
+        background: #0a0a0a !important;
+        color: #dbdbdb !important;
+    }
+
+    .search-bar {
+        width: 100% !important;
+    }
+ }
+
+/* Default */
+
+.search-bar {
+    width: 40vw;
+}
+
+.prerendered-content {
+    display: none;
+}
+
+.has-text-centered {
+    display: block;
+}
+
+.top-hero {
+    text-align: center;
+}
+
+/* Colors */
+
+.hero {
+    background-color: #252020 !important;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #161115 !important;
+}
+
+.footer {
+    background-color: transparent !important;
+}
+
+.submit-button {
+    background-color: #564c49 !important; 
+}
+
+.post-moderation-tools {
+    font-size: 1.25rem;
+}
+
+.report-link {
+    color: #f14668;
+}
+
+.ban-link {
+    color: #f14668;
+}
+
+.remove-link {
+    color: #f14668;
+}
+
+/* Topic */
+
+.all-topics {
+    word-spacing: 2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    text-align: center;
+}
+
+.topic-link {
+    font-size: 1.25rem;
+    width: fit-content;
+}
+
+/* Post */ 
+.post {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+
+    -webkit-box-shadow: 0px 5px 11px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 11px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 11px 0px rgba(0,0,0,0.75);
+}
+
+.post .topic-link {
+    font-size: 1rem !important;
+}
+
+.post-contents {
+    padding: 1rem;
+    padding-left: 1.25rem;
+    padding-top: 1.25rem;
+}
+
+.post-body {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.small-padding {
+    padding-left: 1rem
+}
+
+.clickable-post {
+    color: #b5b5b5 !important;
+    cursor: pointer;
+}
+
+.clickable-post section:hover {
+    border: 1px solid white;
+}
+
+.clickable-post section {
+    border: 1px solid transparent;
+}
+
+.post hr {
+    background-color: #444444 !important;
+    margin: 0 !important;
+    /*   
+    margin-bottom: 1rem !important;*/
+}
+
+.post .more-comments {
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.post .post-media {
+    margin-top: 1rem;
+    max-width: 14rem;
+} 
+
+.post-media img {
+    cursor: zoom-in
+}
+
+.post .post-warning {
+    color: #f14668;
+    font-weight: bold;
+    word-spacing: 0.5rem;
+}
+
+.post .post-warning::before {
+    padding-left: 0.5rem;
+    content: " ";
+}
+
+.post .green-text {
+    color: yellowgreen;
+}
+
+.post .post-title {
+    color: #e61717;
+    font-weight: bold;
+}
+
+.post .post-sender {
+    cursor: default;
+}
+
+section .refresh {
+    margin-left: 1rem;
+    background-color: transparent !important; 
+    margin-bottom: 0.75rem;
+}
+
+.refresh .refresh-button {
+    height: 2rem !important;
+}
+
+.refresh span {
+    vertical-align: sub;
+}
+
+#post-loading .loader {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 auto !important;
+}
+
+.sub-list {
+    font-size:1rem; 
+    padding-left: 1rem;
+}
+
+/* Animations */
+
+@keyframes highlight {
+    0% {
+        background: #e2e27b; 
+    }
+    100% {
+        background: none;
+    }
+}
+
+.post-highlight {
+    animation: highlight 1s;
+}
+
+@keyframes error {
+    0% {
+        background: #e94040; 
+    }
+    100% {
+        background: none;
+    }
+}
+
+.error-highlight {
+    animation: error 1s;
+}
+
+.grecaptcha-badge { visibility: hidden; }
+
+/* Table */
+
+table {
+    width: 100%;
+}
+
+thead {
+    width: 100%;
+}
+
+tfoot th {
+    font-weight: normal !important;
+}
+
+.select-navigation {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+}
+
+/* Modals */
+
+.modal-background {
+    background-color: rgba(10,10,10,.86) !important;
+}
+
+.modal-card-body {
+    background-color: #242424 !important;
+}
+
+.topic-name {
+    vertical-align: super; 
+    padding-left: 0.5rem;
+    font-family: "Liberation Mono";
+    font-weight: normal !important;
+    color: white;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+mark {
+    background-color: #f0ad4e !important;
+}

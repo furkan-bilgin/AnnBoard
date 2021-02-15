@@ -1,0 +1,45 @@
+{% from "navigation.html" import render_navigation %}
+
+{% macro render_removed_user_content(data) %}
+    <tr>
+      <th>
+        {{ data.id }}
+      </th>
+      
+      <th>
+        {{ data.post.body |safe }}
+      </th>
+
+      <th>
+        {{ data.reason }}
+      </th>
+
+       <th>
+        {{ to_readable_date(data.utc_timestamp) }}
+      </th>
+
+      <th>
+        {{ data.moderator }}
+      </th>
+    </tr>
+{% endmacro %}
+
+{% macro render_removed_user_content_table(data_list) %}
+<table class="table" style="font-size: 1rem; width: 100%">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>İçerik</th>
+      <th>Sebep</th>
+      <th>Tarih</th>
+      <th>Moderatör</th>
+    </tr>
+  </thead>
+  <tfoot>
+    {% for data in data_list %}
+        {{ render_removed_user_content(data) }}
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endmacro %}

@@ -1,0 +1,13 @@
+{% macro render_permissions(current_user) -%}
+    <script>
+        let False = false;
+        let True = true;
+        this.permissions = {
+            hasPermission: {{ current_user.has_any_permission() }},
+            canDelete: {{ current_user.has_permission(permissions.REMOVE_POSTS) }},
+            canBan: {{ current_user.has_permission(permissions.BAN_USERS) }},
+            pinPosts: {{ current_user.has_permission(permissions.PIN_POSTS) }},
+            distinguish: {{ current_user.has_permission(permissions.DISTINGUISH_AS_MOD) }}
+        }
+    </script>
+{%- endmacro %}

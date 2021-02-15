@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+{% from "content/post.html" import render_post %}
+{% from "content/topic.html" import render_topic %}
+{% from "content/post_utils.html" import render_loading %}
+
+{% block body %}
+
+<section class="hero hero-with-padding top-hero" style="display: none;">
+  <div class="hero-body">
+    <p class="subtitle" id="search-title">
+    </p>
+  </div>
+</section>
+<br>
+{{ render_loading() }}
+<div id="dump-search-result" style="display: none;"></div>
+{% endblock %}

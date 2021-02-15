@@ -1,0 +1,77 @@
+{% macro render_image_modal(url) %}
+    <div class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <p class="image">
+                <img src="{{ url }}" alt="">
+            </p>
+        </div>
+        <button class="modal-close is-large" data-close-modal="true" aria-label="close"></button>
+    </div>
+{% endmacro %}
+
+{% macro render_delete_modal(body, id) %}
+    <div class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Sil</p>
+                <button data-close-modal="true" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <strong>{{ body|safe }}</strong><br><br>
+                <i class="las la-trash-alt remove-link"></i> Paylaşımı silme sebebini girin: <br>
+                <textarea id="delete-post-modal-reason" placeholder="Silme nedeni... (1-200 harf arası)" class="textarea" cols="20" rows="2"></textarea>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-danger" data-delete-post-confirm="{{ id }}" onclick="$(this).toggleClass('is-loading')">Sil</button>
+                <button class="button" data-close-modal="true">Boş ver</button>
+            </footer>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_ban_modal(body, id) %}
+    <div class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Tekmele</p>
+                <button data-close-modal="true" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <strong>{{ body|safe }}</strong><br><br>
+                <i class="las la-user-slash ban-link"></i> Bu kullanıcıyı <strong>tekmeleme</strong> sebebini girin. (bir daha asla paylaşım yapamayacak): <br>
+                <textarea id="ban-user-modal-reason" placeholder="Tekmeleme nedeni... (3-200 harf arası)" class="textarea" cols="20" rows="2"></textarea>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-danger" data-ban-user-confirm="{{ id }}" onclick="$(this).toggleClass('is-loading')">Tekmele</button>
+                <button class="button" data-close-modal="true">Boş ver</button>
+            </footer>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro render_popup(body, is_error) %}
+    <div class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">
+                    {% if is_error %}
+                        Hata
+                    {% else %}
+                        Bilgi
+                    {% endif %}
+                </p>
+                <button data-close-modal="true" class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                {{ body|safe }} 
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button{% if is_error %} is-danger{% endif %}" data-close-modal="true">Tamam</button>
+            </footer>
+        </div>
+    </div>
+{% endmacro %}

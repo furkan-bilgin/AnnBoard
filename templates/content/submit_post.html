@@ -1,0 +1,52 @@
+{% extends "default.html" %}
+{% from "content/topic.html" import render_topic %}
+{% from "content/_flash_helpers.html" import show_errors, show_form_errors %}
+{% from "recaptcha/recaptcha.html" import render_recaptcha %}
+
+
+{% block title %}
+  {% if topic %}
+    +{{ topic.name }} - Paylaşım Yap
+  {% else %}
+    Anonimce - Paylaşım Yap
+  {% endif %}
+{% endblock %}
+
+{% block body %}
+
+<section class="hero hero-with-padding top-hero">
+  <div class="hero-body">
+    
+    <p class="title">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" style="height: 100px;width:auto">
+    
+    {% if form is not defined %}
+      <p class="subtitle">Paylaşım yapmak için bir kategori seçin.</p>
+      <div class="all-topics">
+        {% for element in topics %}
+          {{ render_topic(element, href= ("/+"+element.name+"/ekle") ) }}
+        {% endfor %}
+      </div>
+    {% else %}    
+      <p class="subtitle">{{ render_topic(topic) }} hakkındaki düşüncelerin:</p>
+      </p>
+      <form id="post-submit-form" method="POST" enctype="multipart/form-data">
+        {{ show_errors() }}
+          <dl>
+            <dd> {{ form.body(cols=10, rows=6, maxlength="30000", class_="textarea", placeholder="Senin düşüncelerin ne?") }} </dd>
+            <br>
+            <dd style="display: flex; justify-content: center; align-items: center;"> 
+              {{ form.title(placeholder="Başlık adı (zorunlu değil)", class_="input", maxlength="35", style="width: 25rem;") }} 
+            </dd>
+            <br>
+            
+            {% include "content/form_buttons.html" %}
+          </dl>
+      </form>
+      <hr>
+      <p>Paylaşım yaparken <a href="{{ url_for('site_rules') }}">sitenin kurallarına</a> uyduğunuzdan emin olun.</p>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}

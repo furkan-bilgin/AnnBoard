@@ -1,0 +1,20 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js" integrity="sha512-Meww2sXqNHxI1+5Dyh/9KAtvI9RZSA4c1K2k5iL02oiPO/RH3Q30L3M1albtqMg50u4gRTYdV4EXOQqXEI336A==" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/nunjucks@3.2.2/browser/nunjucks-slim.min.js"></script>
+
+{% assets filters="uglifyjs", output="gen/packed.js",
+"js/njk.c.js", 
+"js/momentjs_tr.js", "js/bulma_toast.js",
+
+"js/anonimce.js", "js/anonimce_post_controller.js",
+
+"js/admin/anonimce_report.js",
+
+"js/anonimce_submit.js", "js/anonimce_search.js",
+"js/anonimce_show_post.js", "js/anonimce_post_tools.js", "js/anonimce_upload_check.js", "js/anonimce_mass_post_render.js", "js/anonimce_login.js",
+"js/anonimce_modals.js", "js/anonimce_mod_tools.js",
+"js/navbar.js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}{{ version_hash }}"></script>
+{% endassets %}

@@ -1,0 +1,12 @@
+{% from "post.html" import render_comment %}
+
+<section class="hero post" style="padding: 0.25rem"> 
+    <div style="padding: .5rem"></div>
+    {% if comment %}
+        {{ render_comment(comment, false) }}
+    {% else %}
+        {% for comment in comments %}
+            {{ render_comment(comment, false) }}
+        {% endfor %}
+    {% endif %}
+</section>

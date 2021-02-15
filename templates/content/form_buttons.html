@@ -1,0 +1,29 @@
+<div class="columns is-vcentered is-centered is-desktop is-multiline">
+    <div class="column">
+        <center>{{ render_recaptcha(show_checkbox_recaptcha) }}</center>
+    </div>
+    
+    <div class="column">{% include "content/file.html" %}</div> 
+
+    {# <div class="column has-text-centered">Resim ve video ekleme kısa süreliğine devre dışı.</div> #}
+    <div class="column">
+        <center>
+            <button class="button is-link submit-button" onclick="$(this).toggleClass('is-loading')" type="submit">Gönder</button>
+        </center>
+    </div>
+
+    {#
+        {% if False and current_user.has_permission(permissions.DISTINGUISH_AS_MOD) %}
+        <div class="column">
+            <center>
+                <label class="checkbox">
+                    {{ form.distinguish_as_mod }}
+                    Mod olduğunu göster
+                </label>
+            </center>
+        </div>
+        {% endif %}
+    #}
+</div>
+
+<span id="file-error-text" class="has-text-centered" style="margin: 0 auto; color: red"></span>

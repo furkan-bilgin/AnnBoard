@@ -1,0 +1,33 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+flask = "*"
+flask-compress = "*"
+flask-sqlalchemy = "*"
+#mysqlclient = {path = "./mysqlclient-1.4.6-cp38-cp38-win32.whl"}
+flask-wtf = "*"
+flask-migrate = "*"
+pyopenssl = "*"
+flask-login = "*"
+bcrypt = "*"
+pipfile = "*"
+dnspython3 = "*"
+asyncio = "*"
+b2sdk = "*"
+flask-assets = "*"
+cssmin = "*"
+flask-caching = "*"
+redis = "*"
+blinker = "*"
+nest-asyncio = "*"
+pydnsbl = "*"
+ratelimit = "*"
+backoff = "*"
+
+[requires]
+python_version = "3.8"

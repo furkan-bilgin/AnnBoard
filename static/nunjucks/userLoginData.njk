@@ -1,0 +1,6 @@
+{% if data %}
+    {{ data.username }}
+    <span style="width:1rem"></span>
+    <button onclick="localStorage.clear(); window.location.href='/admin/oturumu-kapat'" class="button">Çıkış Yap</button> &nbsp;
+    <button onclick="window.location.href='/admin/anasayfa'" class="button">Panele Gir</button>
+{% endif %}

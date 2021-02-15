@@ -1,0 +1,22 @@
+{% extends "default.html" %}
+{% from "content/_flash_helpers.html" import show_errors, show_primary, show_form_errors %}
+
+{% block body %}
+
+<section class="hero hero-with-padding" style="text-align: center;">
+  <div class="hero-body">
+    <br>
+    <p class="subtitle">
+        {{ show_errors() }}
+        {{ show_primary("success") }}
+    </p>
+    
+    {% set history_go = -2 %}
+    {% if action == "ban" %}
+      {% set history_go = -3 %}
+    {% endif %}
+    <a href="javascript:void(0)" onclick="window.history.go({{ history_go }})">Geri dön</a>
+  </div>
+</section>
+
+{% endblock %}

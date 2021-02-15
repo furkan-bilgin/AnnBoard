@@ -1,0 +1,43 @@
+{% extends "default.html" %}
+
+{% block title %}Anonimce - Kurallar{% endblock %}
+
+{% block body %}
+
+<section class="hero hero-with-padding">
+  <div class="hero-body">
+    <p class="title">
+      Anonimce Site Kuralları
+    </p>
+    <p class="subtitle">
+      <br>
+      <ol style="font-size: 1.25rem; padding-left: 1.25rem">
+        <li><strong>Siyaset yasak.</strong></li>
+        <li>Türkiye'de yasal olmayan paylaşım yapamazsınız.</li>
+        <li>Çıplaklık veya vahşet içeren paylaşım yapamazsınız. </li>
+        <li>İnsanların gerçek hayat bilgilerini içeren (doxxing) paylaşımlar yapamazsınız.</li>
+        <li>Yaptığınız paylaşımların kalitesi çok önemli. Anlaşılmaz ya da troll paylaşım yapmayın.</li>
+        <li>Site hakkında yakınmak yasaktır. Sorununuz veya öneriniz varsa <a href="{{ url_for('contact_us') }}">bizle iletişime geçin.</a></li>
+        <li><a href="+rastgele">+rastgele</a> hariç paylaşım yaptığınız kategorinin konusuna uygun olmayan paylaşımlar yapmayın.</li>
+        <li>Anlaşılmayan ve alakasız paylaşımlar yapmayın.</li>
+        <ol type="a" class="sub-list">
+            <li>Rastgele yazılar: "asdıkfjwencncafDfa^WEf;adf"</li>
+            <li>ASCII paylaşımlar</li>
+            <li>Alakasız copypastalar</li>
+        </ol>
+      </ol>
+      <br>
+      Bu kuralları ihlal etmeniz Anonimce'den geçici ya da kalıcı yasaklanmanıza sebep olabilir.
+    </p>
+    <br>
+    <br>
+    <hr>
+    <strong>Yasal Uyarı:</strong>
+    
+    Sitemiz, hukuka, yasalara, telif haklarına ve kişilik haklarına saygılı olmayı amaç edinmiştir. Sitemiz, 5651 sayılı yasada tanımlanan "yer sağlayıcı" olarak hizmet vermektedir. İlgili yasaya göre, site yönetiminin hukuka aykırı içerikleri kontrol etme yükümlülüğü yoktur. Bu sebeple, sitemiz "uyar ve kaldır" prensibini benimsemiştir. <br>
+    Sitemizde 5651 sayılı kanunun 8. maddesine ve T.C.K'nın 125. maddesine göre tüm üyelerimiz yaptıkları paylaşımlardan kendileri sorumludur. Sitemiz hakkında yapılacak tüm hukuksal şikayetleri <a href="iletisim">iletişim</a> bağlantısından bize ulaşıldıktan en geç 3 (üç) gün içerisinde ilgili kanunlar ve yönetmenlikler çerçevesinde tarafımızca incelenerek, gereken işlemler yapılacak ve site yöneticilerimiz tarafından bilgi verilecektir.
+    
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "default.html" %}
+{% from "content/post.html" import render_post %}
+{% from "content/topic.html" import render_topic %}
+{% from "content/post_utils.html" import render_loading %}
+
+{% block body %}
+
+<section class="hero hero-with-padding top-hero">
+  <div class="hero-body">
+    <p class="title">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" style="height: 100px;width:auto">
+    </p>
+    <p class="subtitle">
+      Anonimce, anonim bilgi edinip anonim bir şekilde paylaşım yapabildiğiniz bir mecradır.
+    </p>
+    <p class="subtitle">
+      <a href="ekle" class="button submit-button">Paylaşım Yap</a>
+    </p>
+  </div>
+</section>
+
+<div class="all-topics">
+  {% for element in topics %}
+    {{ render_topic(element) }}
+  {% endfor %}
+</div>
+
+{{ render_loading() }}
+<div id="dump-posts" style="display: none;"></div>
+
+<div class="prerendered-content">{{ prerender|safe }}</div>
+{% endblock %}
