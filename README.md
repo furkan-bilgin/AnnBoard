@@ -1,4 +1,4 @@
-# Anonimce
+# AnnBoard
 A fully-fledged modern anonymous imageboard website.
 
 ## Features
