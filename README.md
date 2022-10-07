@@ -1,6 +1,9 @@
 # AnnBoard
 A fully-fledged modern anonymous imageboard website.
 
+![image1](https://i.ibb.co/NmDCB0J/1.png)
+![image2](https://i.ibb.co/9rFjDN8/2.png)
+
 ## Features
 - Uses Flask
 - Frontend is handled by Flask and Nunjucks
